@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 //using PlatformService.AsyncDataServices;
 using PlatformService.Data;
+using PlatformService.SyncDataServices.Http;
 //using PlatformService.SyncDataServices.Grpc;
 //using PlatformService.SyncDataServices.Http;
 
@@ -49,8 +50,9 @@ namespace PlatformService
             //}
 
             services.AddScoped<IPlatformRepo, PlatformRepo>();
-/*
             services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+
+            /*
             services.AddSingleton<IMessageBusClient, MessageBusClient>();
             services.AddGrpc(); 
             */
@@ -61,8 +63,7 @@ namespace PlatformService
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PlatformService", Version = "v1" });
             });
 
-            //Console.WriteLine($"--> CommandService Endpoint {Configuration["CommandService"]}");
-
+            Console.WriteLine($"--> CommandService Endpoint {Configuration["CommandService"]}");
         }
 
 
