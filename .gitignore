@@ -1,0 +1,9 @@
+.vscode/
+
+PlatformService/bin/
+PlatformService/obj/
+PlatformService/.vscode/
+
+CommandsService/bin/
+CommandsService/obj/
+CommandsService/.vscode/
