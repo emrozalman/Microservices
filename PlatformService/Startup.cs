@@ -33,21 +33,20 @@ namespace PlatformService
             _env = env;
         }
 
-
         public void ConfigureServices(IServiceCollection services)
         {
-            /*if (_env.IsProduction())
+            if (_env.IsProduction())
             {
                 Console.WriteLine("--> Using SqlServer Db");
                 services.AddDbContext<AppDbContext>(opt =>
                     opt.UseSqlServer(Configuration.GetConnectionString("PlatformsConn")));
             }
             else
-            {*/
+            {
                 Console.WriteLine("--> Using InMem Db");
                 services.AddDbContext<AppDbContext>(opt =>
                      opt.UseInMemoryDatabase("InMem"));
-            //}
+            }
 
             services.AddScoped<IPlatformRepo, PlatformRepo>();
             services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
@@ -93,8 +92,7 @@ namespace PlatformService
                 });
             });
 
-            PrepDb.PrepPopulation(app /*, env.IsProduction()*/);
-
+            PrepDb.PrepPopulation(app, env.IsProduction());
         }
     }
 }
