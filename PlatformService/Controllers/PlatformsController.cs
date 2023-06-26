@@ -69,6 +69,16 @@ namespace PlatformService.Controllers
             }
 
             // Send Async Message
+            try
+            {                
+                var plattformPublishedDto = _mapper.Map<PlatformPublishedDto>(platformReadDto);
+                plattformPublishedDto.Event = "Platform_Published";
+                _messageBusClient.PublishNewPlatform(plattformPublishedDto);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"--> Could not send asynchronously: {ex.Message}");
+            }
 
             return CreatedAtRoute(nameof(GetPlatformById), new { Id = platformReadDto.Id }, platformReadDto); 
         }
